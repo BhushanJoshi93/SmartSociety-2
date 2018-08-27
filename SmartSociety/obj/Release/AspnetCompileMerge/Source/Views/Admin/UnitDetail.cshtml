@@ -1,0 +1,107 @@
+﻿@using System.Data
+@{
+    ViewBag.Title = "UnitDetail";
+    Layout = "~/Views/AdminLayout.cshtml";
+    DataTable dtw = ViewBag.WingData;
+    DataTable dtut = ViewBag.UnitTypeData;
+    DataTable dtm = ViewBag.MemberData;
+}
+
+<div class="col-md-12  col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Unit Details</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <br>
+            <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="" action="/Admin/UnitDetail" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="UnitID" value="@Model.UnitID" />
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Unit Name <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="UnitName" name="UnitName" value="@Model.UnitName" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        WingID <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.DropDownList("WingID", new SelectList(dtw.DefaultView, "WingID", "WingName"), "Select Wing",  new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        UnitTypeID <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.DropDownList("UnitTypeID", new SelectList(dtut.DefaultView, "UnitTypeID", "UnitTypeName"), "Select UnitType", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Owner Name <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="OwnerName" name="OwnerName" value="@Model.OwnerName" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="DocumentPath">
+                        Document Copy
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @if (Model.UnitID > 0)
+                        {
+                            <img src="@Model.DocumentPath" style="max-height:200px; max-width:200px; border: solid 3px #888888;" />
+                            <br />
+                        }
+                        <input class="input-xlarge focused" id="DocumentPath" type="file" name="DocumentPath">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Mobile">
+                        Mobile <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Mobile" name="Mobile" value="@Model.Mobile" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Phone 
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Phone" name="Phone" value="@Model.Phone" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Status</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="icheckbox_flat-green" style="position: relative;">
+                            <input type="checkbox" name="Status" class="flat" @( Model.Status == "Active" ? "checked=checked" : "" ) value="True" style="position: absolute; opacity: 0;">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="button" onclick="location.href='/Admin/UnitDetail/0'" class="btn btn-primary">Cancel</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+

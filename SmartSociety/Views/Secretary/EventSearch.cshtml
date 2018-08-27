@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "EventSearch";
+    Layout = "~/Views/AdminLayout.cshtml";
+}
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Event <small>Details</small></h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="#"><i class="fa fa-chevron-up"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <p class="text-muted font-13 m-b-30">
+
+            </p>
+            <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="datatable" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="No: activate to sort column descending" style="width: 160px;">No.</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Title: activate to sort column descending" style="width: 160px;">Title</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Details: activate to sort column ascending" style="width: 261px;">Details</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Venue: activate to sort column ascending" style="width: 261px;">Venue</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="EventDate: activate to sort column ascending" style="width: 118px;">Event Date</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="EventType: activate to sort column ascending" style="width: 118px;">Event Type</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Unit: activate to sort column ascending" style="width: 59px;">Unit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Rows.Count > 0)
+                                {
+                                    for (int i = 0; i < Model.Rows.Count; i++)
+                                    {
+                                        string oe;
+                                        if ((i + 2) % 2 == 0)
+                                        {
+                                            oe = "even";
+                                        }
+                                        else { oe = "odd"; }
+                                        <tr role="row" class=@oe>
+                                            <td>@(i + 1)</td>
+                                            <td>@Model.Rows[i]["Title"]</td>
+                                            <td>@Model.Rows[i]["Details"]</td>
+                                            <td>@Model.Rows[i]["Venue"]</td>
+                                            <td>@Model.Rows[i]["EventDate"]</td>
+                                            <td>@Model.Rows[i]["EventType"]</td>
+                                            <td>@Model.Rows[i]["UnitName"]</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

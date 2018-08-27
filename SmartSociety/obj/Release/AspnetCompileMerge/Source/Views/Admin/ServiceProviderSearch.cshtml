@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "ServiceProvicerSearch";
+    Layout = "~/Views/AdminLayout.cshtml";
+}
+
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>ServiceProvider Details</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a href="~/Admin/ServiceProviderDetail/0"><i class="fa fa-plus"></i></a>
+                </li>
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div id="datatable_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                <div class="row">
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="datatable" class="table table-striped table-bordered dataTable no-footer" role="grid" aria-describedby="datatable_info">
+                            <thead>
+                                <tr role="row">
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="UnitID: activate to sort column descending" style="width: 160px;">ID</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending" style="width: 160px;">Name</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Owner: activate to sort column ascending" style="width: 59px;">ServiceType</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="WingName: activate to sort column ascending" style="width: 160px;">Mobile1</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="UnitType: activate to sort column ascending" style="width: 261px;">Mobile2</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Status: activate to sort column ascending" style="width: 118px;">Address</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Mobile: activate to sort column ascending" style="width: 113px;">Price</th>
+                                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending" style="width: 87px;">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Rows.Count > 0)
+                                {
+                                    for (int i = 0; i < Model.Rows.Count; i++)
+                                    {
+                                        string oe;
+                                        if ((i + 2) % 2 == 0)
+                                        { oe = "even"; }
+                                        else { oe = "odd"; }
+                                        <tr role="row" class=@oe>
+                                            <td>@Model.Rows[i]["ServiceProviderID"]</td>
+                                            <td>@Model.Rows[i]["Name"]</td>
+                                            <td>@Model.Rows[i]["STName"]</td>
+                                            <td>@Model.Rows[i]["Mobile1"]</td>
+                                            <td>@Model.Rows[i]["Mobile2"]</td>
+                                            <td>@Model.Rows[i]["Address"]</td>
+                                            <td>@Model.Rows[i]["Price"]</td>
+                                            <td><a href="~/Admin/ServiceProviderDetail/@Model.Rows[i]["ServiceProviderID"]">Edit</a>/<a href="~/Admin/ServviceProviderDelete/@Model.Rows[i]["ServiceProviderID"]">Delete</a></td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr class="odd">
+                                        <td valign="top" colspan="6" class="dataTables_empty">No matching records found</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

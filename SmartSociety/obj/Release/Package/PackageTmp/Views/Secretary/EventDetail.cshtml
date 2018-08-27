@@ -1,0 +1,108 @@
+﻿@using System.Data
+@{
+    ViewBag.Title = "EventDetail";
+    Layout = "~/Views/AdminLayout.cshtml";
+    DataTable dtu = ViewBag.dtu;
+}
+
+<div class="col-md-12  col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Notice</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <br>
+            <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="" action="/Secretary/EventDetail" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="UnitID" value="@Model.EventID" />
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Title <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Title" name="Title" value="@Model.Title" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="DocumentPath">
+                        Photo
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @if (Model.EventID > 0)
+                        {
+                            <img src="@Model.PhotoPath" style="max-height:200px; max-width:200px; border: solid 3px #888888;" />
+                            <br />
+                        }
+                        <input class="input-xlarge focused" id="PhotoPath" type="file" name="PhotoPath">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Details <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <textarea class="form-control" rows="3" name="Details" value="@Model.Details"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Venue <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Venue" name="Venue" value="@Model.Venue" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Event Date <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input id="birthday" name="EventDate" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Event Type <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="EventType" name="EventType" value="@Model.EventType" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Unit <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.DropDownList("UID", new SelectList(dtu.DefaultView, "UnitID", "UnitName"), "Select Unit", new { @class = "form-control" }) 
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="button" onclick="location.href='/Secretary/EventDetail/0'" class="btn btn-primary">Cancel</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+            $(document).ready(function() {
+              $('#birthday').daterangepicker({
+                singleDatePicker: true,
+                calender_style: "picker_4"
+              }, function(start, end, label) {
+                console.log(start.toISOString(), end.toISOString(), label);
+              });
+            });
+</script>
+
+
+

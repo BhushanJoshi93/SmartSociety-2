@@ -1,0 +1,221 @@
+﻿@using System.Data
+@{
+    ViewBag.Title = "AddMember";
+    Layout = "~/Views/AdminLayout.cshtml";
+    DataTable md = ViewBag.MemberData;
+}
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>@Model.Rows[0]["UnitName"] Details</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <br>
+            <form id="demo-form2" data-parsley-validate="" action="/Admin/AddMember/@Model.Rows[0]["UnitID"]" class="form-horizontal form-label-left" novalidate="">
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="unit-name">
+                        Unit Name <span class="required">:</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <label class="control-label" for="unit-name">
+                            @Model.Rows[0]["UnitName"]
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="wing-name">
+                        Wing <span class="required">:</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <label class="control-label" for="wing-name">
+                            @Model.Rows[0]["WingName"]
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="unittype-name">
+                        UnitType <span class="required">:</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <label class="control-label" for="unittype-name">
+                            @Model.Rows[0]["UnitTypeName"]
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="status">
+                        Status <span class="required">:</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <label class="control-label" for="status">
+                            @Model.Rows[0]["Status"]
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="owner-name">
+                        Owner Name <span class="required">:</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <label class="control-label" for="owner-name">
+                            @Model.Rows[0]["OwnerName"]
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="mobile">
+                        Mobile <span class="required">:</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <label class="control-label" for="mobile">
+                            @Model.Rows[0]["Mobile"]
+                        </label>
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="button" onclick="location.href='/Admin/UnitMemberDetail/?uID=@Model.Rows[0]["UnitID"]&mID=0'" class="btn btn-success">Add Member</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Member Details</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        <th>Username</th>
+                        <th>Created</th>
+                        <th>Unit</th>
+                        <th>Status</th>
+                        <th>Gender</th>
+                        <th>Type</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (md.Rows.Count > 0)
+                    {
+                        for (int i = 0; i < md.Rows.Count; i++)
+                        {
+                    <tr>
+                        <td>@md.Rows[i]["MemberID"]</td>
+                        <td>@md.Rows[i]["Name"]</td>
+                        <td>@md.Rows[i]["Mobile"]</td>
+                        <td>@md.Rows[i]["Email"]</td>
+                        <td>@md.Rows[i]["Username"]</td>
+                        <td>@md.Rows[i]["CreatedDate"]</td>
+                        <td>@md.Rows[i]["UnitName"]</td>
+                        <td>@md.Rows[i]["Status"]</td>
+                        <td>@md.Rows[i]["Gender"]</td>
+                        <td>@md.Rows[i]["MemberType"]</td>
+                        <td><a href="~/Admin/MemberDetail/@md.Rows[i]["MemberID"]">Edit</a>/<a href="~/Admin/MemberDelete/@md.Rows[i]["MemberID"]">Delete</a></td>
+                    </tr>
+                        }
+                    }
+                    else
+                    {
+                    <tr>
+                        <td>NO DATA</td>
+                        <td>NO DATA</td>
+                        <td>NO DATA</td>
+                        <td>NO DATA</td>
+                        <td>NO DATA</td>
+                        <td>NO DATA</td>
+                        <td>NO DATA</td>
+                        <td>NO DATA</td>
+                        <td>NO DATA</td>
+                        <td>NO DATA</td>
+                        <td>NO DATA</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>@Model.Rows[0]["UnitName"] - Members</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+            <div class="row">
+                <div class="clearfix"></div>
+                @if (md.Rows.Count > 0)
+                {
+                    for (int i = 0; i < md.Rows.Count; i++)
+                    {
+                        <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
+                            <div class="well profile_view">
+                                <div class="col-sm-12">
+                                    <h4 class="brief"><i>Digital Strategist</i></h4>
+                                    <div class="left col-xs-7">
+                                        <h2> @md.Rows[i]["Name"] </h2>
+                                        <p><strong>Status: </strong> @md.Rows[i]["Status"] </p>
+                                        <ul class="list-unstyled">
+                                            <li><i class="fa fa-phone"></i> @md.Rows[i]["Mobile"] </li>
+                                            <li><i class="fa fa-envelope"></i> @md.Rows[i]["Email"] </li>
+                                        </ul>
+                                    </div>
+                                    <div class="right col-xs-5 text-center">
+                                        <img src="@md.Rows[i]["PhotoPath"]" alt="" class="img-circle img-responsive">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 bottom text-center">
+                                    <div class="col-xs-12 col-sm-6 emphasis">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 emphasis">
+
+                                        <button type="button" onclick="location.href='/Admin/UnitMemberDetail/?uID=@Model.Rows[0]["UnitID"]&mID=@md.Rows[i]["MemberID"]'" class="btn btn-primary btn-xs">
+                                            <i class="fa fa-user">
+                                            </i> Edit Profile
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

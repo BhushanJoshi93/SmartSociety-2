@@ -1,0 +1,101 @@
+﻿
+@{
+    ViewBag.Title = "WingDetail";
+    Layout = "~/Views/AdminLayout.cshtml";
+    SmartSociety.Models.Wing wu = (SmartSociety.Models.Wing)ViewBag.WingUpdate;
+}
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Wing Details</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <br>
+            <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="" action="/Admin/WingDetail" method="post" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="WingName">
+                        Wing Name <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="WingName" name="WingName" value="@wu.WingName" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="MaxUnit">
+                        Maximum Unit <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="MaxUnit" name="MaxUnit" value="@wu.MaxUnit" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="0108"><ul class="parsley-errors-list" id="parsley-id-0108"></ul>
+                    </div>
+                </div>
+                <input type="hidden" name="WingID" value="@wu.WingID" />
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="button" onclick="location.href='/Admin/WingDetail/0'" class="btn btn-primary">Cancel</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>    <!--this is for form-->
+
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Wing Details List</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Wing Name</th>
+                        <th>Maximum Unit</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Rows.Count > 0)
+                    {
+                        for (int i = 0; i < Model.Rows.Count; i++)
+                        {
+                            <tr>
+                                <td>@Model.Rows[i]["WingID"]</td>
+                                <td>@Model.Rows[i]["WingName"]</td>
+                                <td>@Model.Rows[i]["MaxUnit"]</td>
+                                <td><a href="~/Admin/WingDetail/@Model.Rows[i]["WingID"]">Edit</a>/<a href="~/Admin/WingDelete/@Model.Rows[i]["WingID"]">Delete</a></td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>NO DATA</td>
+                            <td>NO DATA</td>
+                            <td>NO DATA</td>
+                            <td>NO DATA</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>    <!--this is for list/table-->

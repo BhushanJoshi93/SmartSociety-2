@@ -1,0 +1,131 @@
+﻿@using System.Data
+@{
+    ViewBag.Title = "UnitMemberDetail";
+    Layout = "~/Views/AdminLayout.cshtml";
+    DataTable dt = ViewBag.UnitData;
+}
+
+<div class="col-md-12  col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Member Details</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <br>
+            <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="" action="/Admin/UnitMemberDetail" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="MemberID" value="@Model.MemberID" />
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Name <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Name" name="Name" value="@Model.Name" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Mobile <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Mobile" name="Mobile" value="@Model.Mobile" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Email <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Email" name="Email" value="@Model.Email" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Username <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Username" name="Username" value="@Model.Username" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Password <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="password" id="Password" name="Password" value="@Model.Password" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Unit <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="UnitName" disabled="disabled" name="UnitName" value="@dt.Rows[0]["UnitName"]" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                        <input type="hidden" id="UnitID" name="UnitID" value="@dt.Rows[0]["UnitID"]" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Status</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="icheckbox_flat-green" style="position: relative;">
+                            <input type="checkbox" name="Status" class="flat" @( Model.Status ? "checked=checked" : "" ) value="True" style="position: absolute; opacity: 0;">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="PhotoPath">
+                        Photo
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @if (Model.MemberID > 0)
+                        {
+                            <img src="@Model.PhotoPath" style="max-height:200px; max-width:200px; border: solid 3px #888888;" />
+                            <br />
+                        }
+                        <input class="input-xlarge focused" id="PhotoPath" type="file" name="PhotoPath">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Gender</label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div id="status" class="btn-group" data-toggle="buttons">
+                            <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                <input type="radio" name="Gender" value="Male" data-parsley-multiple="gender" @( Model.Gender == "Male" ? "checked=checked" : "" ) data-parsley-id="5083"> Male
+                            </label><ul class="parsley-errors-list" id="parsley-id-multiple-gender"></ul>
+                            <label class="btn btn-primary active" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                <input type="radio" name="Gender" value="Female" @( Model.Gender == "Female" ? "checked=checked" : "" ) data-parsley-multiple="gender" data-parsley-id="5083"> Female
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Member Type <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="MemberType" name="MemberType" value="@Model.MemberType" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="button" onclick="location.href='/Admin/AddMember/@dt.Rows[0]["UnitID"]'" class="btn btn-primary">Cancel</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

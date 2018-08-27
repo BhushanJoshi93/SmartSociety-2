@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SmartSocietyDBModelStoreContainer" CdmEntityContainer="SmartSocietyDBEntities">
+    <EntitySetMapping Name="Events">
+      <EntityTypeMapping TypeName="SmartSocietyDBModel.Event">
+        <MappingFragment StoreEntitySet="Event">
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="Venue" ColumnName="Venue" />
+          <ScalarProperty Name="EventDate" ColumnName="EventDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="EventType" ColumnName="EventType" />
+          <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EventEntries">
+      <EntityTypeMapping TypeName="SmartSocietyDBModel.EventEntry">
+        <MappingFragment StoreEntitySet="EventEntry">
+          <ScalarProperty Name="EventEntryID" ColumnName="EventEntryID" />
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="EntryCount" ColumnName="EntryCount" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="SmartSocietyDBModel.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="MemberType" ColumnName="MemberType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Messages">
+      <EntityTypeMapping TypeName="SmartSocietyDBModel.Message">
+        <MappingFragment StoreEntitySet="Message">
+          <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+          <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notices">
+      <EntityTypeMapping TypeName="SmartSocietyDBModel.Notice">
+        <MappingFragment StoreEntitySet="Notice">
+          <ScalarProperty Name="NoticeID" ColumnName="NoticeID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Details" ColumnName="Details" />
+          <ScalarProperty Name="Attachment" ColumnName="Attachment" />
+          <ScalarProperty Name="NoticeDate" ColumnName="NoticeDate" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceBookings">
+      <EntityTypeMapping TypeName="SmartSocietyDBModel.ServiceBooking">
+        <MappingFragment StoreEntitySet="ServiceBooking">
+          <ScalarProperty Name="ServiceBookingID" ColumnName="ServiceBookingID" />
+          <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+          <ScalarProperty Name="ServiceProviderID" ColumnName="ServiceProviderID" />
+          <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Review" ColumnName="Review" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="ReviewTime" ColumnName="ReviewTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceProviders">
+      <EntityTypeMapping TypeName="SmartSocietyDBModel.ServiceProvider">
+        <MappingFragment StoreEntitySet="ServiceProvider">
+          <ScalarProperty Name="ServiceProvideID" ColumnName="ServiceProvideID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+          <ScalarProperty Name="ServiceTypeID" ColumnName="ServiceTypeID" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Mobile1" ColumnName="Mobile1" />
+          <ScalarProperty Name="Mobile2" ColumnName="Mobile2" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Catalog" ColumnName="Catalog" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceTypes">
+      <EntityTypeMapping TypeName="SmartSocietyDBModel.ServiceType">
+        <MappingFragment StoreEntitySet="ServiceType">
+          <ScalarProperty Name="ServiceTypeID" ColumnName="ServiceTypeID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Units">
+      <EntityTypeMapping TypeName="SmartSocietyDBModel.Unit">
+        <MappingFragment StoreEntitySet="Unit">
+          <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+          <ScalarProperty Name="UnitName" ColumnName="UnitName" />
+          <ScalarProperty Name="WingID" ColumnName="WingID" />
+          <ScalarProperty Name="UnitTypeID" ColumnName="UnitTypeID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="OwnerName" ColumnName="OwnerName" />
+          <ScalarProperty Name="DocumentPath" ColumnName="DocumentPath" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnitTypes">
+      <EntityTypeMapping TypeName="SmartSocietyDBModel.UnitType">
+        <MappingFragment StoreEntitySet="UnitType">
+          <ScalarProperty Name="UnitTypeID" ColumnName="UnitTypeID" />
+          <ScalarProperty Name="UnitTypeName" ColumnName="UnitTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VisitorLogs">
+      <EntityTypeMapping TypeName="SmartSocietyDBModel.VisitorLog">
+        <MappingFragment StoreEntitySet="VisitorLog">
+          <ScalarProperty Name="VisitorLogID" ColumnName="VisitorLogID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+          <ScalarProperty Name="UnitID" ColumnName="UnitID" />
+          <ScalarProperty Name="CheckinTime" ColumnName="CheckinTime" />
+          <ScalarProperty Name="CheckoutTime" ColumnName="CheckoutTime" />
+          <ScalarProperty Name="WatchmanID" ColumnName="WatchmanID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Watchmen">
+      <EntityTypeMapping TypeName="SmartSocietyDBModel.Watchman">
+        <MappingFragment StoreEntitySet="Watchman">
+          <ScalarProperty Name="WatchmanID" ColumnName="WatchmanID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Wings">
+      <EntityTypeMapping TypeName="SmartSocietyDBModel.Wing">
+        <MappingFragment StoreEntitySet="Wing">
+          <ScalarProperty Name="WingID" ColumnName="WingID" />
+          <ScalarProperty Name="WingName" ColumnName="WingName" />
+          <ScalarProperty Name="MaxUnit" ColumnName="MaxUnit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

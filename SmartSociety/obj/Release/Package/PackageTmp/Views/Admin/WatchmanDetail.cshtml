@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "WatchmanDetail";
+    Layout = "~/Views/AdminLayout.cshtml";
+    SmartSociety.Models.Watchman wmu = (SmartSociety.Models.Watchman)ViewBag.WatchmanUpdate;
+}
+
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Watchman Details</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <br>
+            <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="" action="/Admin/WatchmanDetail" method="post" enctype="multipart/form-data">
+
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Name <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Name" name="Name" value="@wmu.Name" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Mobile">
+                        Mobile <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Mobile" name="Mobile" value="@wmu.Mobile" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Username">
+                        Username <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Username" name="Username" value="@wmu.Username" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Password">
+                        Password <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Password" name="Password" value="@wmu.Password" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="MaxUnit">
+                        Choose Photo <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @if (wmu.WatchmanID > 0)
+                        {
+                            <img src="@wmu.PhotoPath" style="max-height:200px; max-width:200px; border: solid 3px #888888;" />
+                            <br />
+                        }
+                        <input class="input-xlarge focused" name="PhotoPath" id="PhotoPath" type="file">
+                    </div>
+                </div>
+                <input type="hidden" name="WatchmanID" value="@wmu.WatchmanID" />
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="submit" class="btn btn-primary">Cancel</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Watchman Details List</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Username</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Rows.Count > 0)
+                    {
+                        for (int i = 0; i < Model.Rows.Count; i++)
+                        {
+                            <tr>
+                                <td>@Model.Rows[i]["WatchmanID"]</td>
+                                <td>@Model.Rows[i]["Name"]</td>
+                                <td>@Model.Rows[i]["Mobile"]</td>
+                                <th>@Model.Rows[i]["Username"]</th>
+                                <td><a href="~/Admin/WatchmanDetail/@Model.Rows[i]["WatchmanID"]">Edit</a>/<a href="~/Admin/WatchmanDelete/@Model.Rows[i]["WatchmanID"]">Delete</a></td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td>NO DATA</td>
+                            <td>NO DATA</td>
+                            <td>NO DATA</td>
+                            <td>NO DATA</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+

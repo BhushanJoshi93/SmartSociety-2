@@ -1,0 +1,440 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SmartSocietyDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Venue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EventDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="EventType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UnitID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Unit" Relationship="Self.FK_Event_Unit" FromRole="Event" ToRole="Unit" />
+    <NavigationProperty Name="EventEntries" Relationship="Self.FK_EventEntry_Event" FromRole="Event" ToRole="EventEntry" />
+  </EntityType>
+  <EntityType Name="EventEntry">
+    <Key>
+      <PropertyRef Name="EventEntryID" />
+    </Key>
+    <Property Name="EventEntryID" Type="Int32" Nullable="false" />
+    <Property Name="EventID" Type="Int32" Nullable="false" />
+    <Property Name="UnitID" Type="Int32" Nullable="false" />
+    <Property Name="MemberID" Type="Int32" Nullable="false" />
+    <Property Name="EntryCount" Type="Int32" />
+    <Property Name="EntryDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Event" Relationship="Self.FK_EventEntry_Event" FromRole="EventEntry" ToRole="Event" />
+    <NavigationProperty Name="Member" Relationship="Self.FK_EventEntry_Member" FromRole="EventEntry" ToRole="Member" />
+    <NavigationProperty Name="Unit" Relationship="Self.FK_EventEntry_Unit" FromRole="EventEntry" ToRole="Unit" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="MemberID" />
+    </Key>
+    <Property Name="MemberID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UnitID" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MemberType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EventEntries" Relationship="Self.FK_EventEntry_Member" FromRole="Member" ToRole="EventEntry" />
+    <NavigationProperty Name="Unit" Relationship="Self.FK_Member_Unit" FromRole="Member" ToRole="Unit" />
+    <NavigationProperty Name="Messages" Relationship="Self.FK_Message_Member" FromRole="Member" ToRole="Message" />
+    <NavigationProperty Name="Notices" Relationship="Self.FK_Notice_Member" FromRole="Member" ToRole="Notice" />
+    <NavigationProperty Name="ServiceBookings" Relationship="Self.FK_ServiceBooking_Member" FromRole="Member" ToRole="ServiceBooking" />
+  </EntityType>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="MessageID" />
+    </Key>
+    <Property Name="MessageID" Type="Int32" Nullable="false" />
+    <Property Name="MessageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+    <Property Name="MemberID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Member" Relationship="Self.FK_Message_Member" FromRole="Message" ToRole="Member" />
+  </EntityType>
+  <EntityType Name="Notice">
+    <Key>
+      <PropertyRef Name="NoticeID" />
+    </Key>
+    <Property Name="NoticeID" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Attachment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NoticeDate" Type="DateTime" Precision="3" />
+    <Property Name="MemberID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Member" Relationship="Self.FK_Notice_Member" FromRole="Notice" ToRole="Member" />
+  </EntityType>
+  <EntityType Name="ServiceBooking">
+    <Key>
+      <PropertyRef Name="ServiceBookingID" />
+    </Key>
+    <Property Name="ServiceBookingID" Type="Int32" Nullable="false" />
+    <Property Name="UnitID" Type="Int32" Nullable="false" />
+    <Property Name="ServiceProviderID" Type="Int32" Nullable="false" />
+    <Property Name="BookingDate" Type="DateTime" Precision="3" />
+    <Property Name="MemberID" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Review" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Rating" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ReviewTime" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Member" Relationship="Self.FK_ServiceBooking_Member" FromRole="ServiceBooking" ToRole="Member" />
+    <NavigationProperty Name="ServiceProvider" Relationship="Self.FK_ServiceBooking_ServiceProvider" FromRole="ServiceBooking" ToRole="ServiceProvider" />
+    <NavigationProperty Name="Unit" Relationship="Self.FK_ServiceBooking_Unit" FromRole="ServiceBooking" ToRole="Unit" />
+  </EntityType>
+  <EntityType Name="ServiceProvider">
+    <Key>
+      <PropertyRef Name="ServiceProvideID" />
+    </Key>
+    <Property Name="ServiceProvideID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ServiceTypeID" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Catalog" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Price" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ServiceBookings" Relationship="Self.FK_ServiceBooking_ServiceProvider" FromRole="ServiceProvider" ToRole="ServiceBooking" />
+    <NavigationProperty Name="ServiceType" Relationship="Self.FK_ServiceProvider_ServiceType" FromRole="ServiceProvider" ToRole="ServiceType" />
+  </EntityType>
+  <EntityType Name="ServiceType">
+    <Key>
+      <PropertyRef Name="ServiceTypeID" />
+    </Key>
+    <Property Name="ServiceTypeID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ServiceProviders" Relationship="Self.FK_ServiceProvider_ServiceType" FromRole="ServiceType" ToRole="ServiceProvider" />
+  </EntityType>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="UnitID" />
+    </Key>
+    <Property Name="UnitID" Type="Int32" Nullable="false" />
+    <Property Name="UnitName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="WingID" Type="Int32" Nullable="false" />
+    <Property Name="UnitTypeID" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OwnerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DocumentPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MemberID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Events" Relationship="Self.FK_Event_Unit" FromRole="Unit" ToRole="Event" />
+    <NavigationProperty Name="EventEntries" Relationship="Self.FK_EventEntry_Unit" FromRole="Unit" ToRole="EventEntry" />
+    <NavigationProperty Name="Members" Relationship="Self.FK_Member_Unit" FromRole="Unit" ToRole="Member" />
+    <NavigationProperty Name="ServiceBookings" Relationship="Self.FK_ServiceBooking_Unit" FromRole="Unit" ToRole="ServiceBooking" />
+    <NavigationProperty Name="UnitType" Relationship="Self.FK_Unit_UnitType" FromRole="Unit" ToRole="UnitType" />
+    <NavigationProperty Name="Wing" Relationship="Self.FK_Unit_Wing" FromRole="Unit" ToRole="Wing" />
+    <NavigationProperty Name="VisitorLogs" Relationship="Self.FK_VisitorLog_Unit" FromRole="Unit" ToRole="VisitorLog" />
+  </EntityType>
+  <EntityType Name="UnitType">
+    <Key>
+      <PropertyRef Name="UnitTypeID" />
+    </Key>
+    <Property Name="UnitTypeID" Type="Int32" Nullable="false" />
+    <Property Name="UnitTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Unit" Relationship="Self.FK_Unit_UnitType" FromRole="UnitType" ToRole="Unit" />
+  </EntityType>
+  <EntityType Name="VisitorLog">
+    <Key>
+      <PropertyRef Name="VisitorLogID" />
+    </Key>
+    <Property Name="VisitorLogID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UnitID" Type="Int32" Nullable="false" />
+    <Property Name="CheckinTime" Type="DateTime" Precision="3" />
+    <Property Name="CheckoutTime" Type="DateTime" Precision="3" />
+    <Property Name="WatchmanID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Unit" Relationship="Self.FK_VisitorLog_Unit" FromRole="VisitorLog" ToRole="Unit" />
+    <NavigationProperty Name="Watchman" Relationship="Self.FK_VisitorLog_Watchman" FromRole="VisitorLog" ToRole="Watchman" />
+  </EntityType>
+  <EntityType Name="Watchman">
+    <Key>
+      <PropertyRef Name="WatchmanID" />
+    </Key>
+    <Property Name="WatchmanID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Mobile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PhotoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="VisitorLogs" Relationship="Self.FK_VisitorLog_Watchman" FromRole="Watchman" ToRole="VisitorLog" />
+  </EntityType>
+  <EntityType Name="Wing">
+    <Key>
+      <PropertyRef Name="WingID" />
+    </Key>
+    <Property Name="WingID" Type="Int32" Nullable="false" />
+    <Property Name="WingName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MaxUnit" Type="Int32" />
+    <NavigationProperty Name="Units" Relationship="Self.FK_Unit_Wing" FromRole="Wing" ToRole="Unit" />
+  </EntityType>
+  <Association Name="FK_Event_Unit">
+    <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+    <End Role="Event" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="UnitID" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="UnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventEntry_Event">
+    <End Role="Event" Type="Self.Event" Multiplicity="1" />
+    <End Role="EventEntry" Type="Self.EventEntry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="EventID" />
+      </Principal>
+      <Dependent Role="EventEntry">
+        <PropertyRef Name="EventID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventEntry_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="EventEntry" Type="Self.EventEntry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="MemberID" />
+      </Principal>
+      <Dependent Role="EventEntry">
+        <PropertyRef Name="MemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventEntry_Unit">
+    <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+    <End Role="EventEntry" Type="Self.EventEntry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="UnitID" />
+      </Principal>
+      <Dependent Role="EventEntry">
+        <PropertyRef Name="UnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Member_Unit">
+    <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+    <End Role="Member" Type="Self.Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="UnitID" />
+      </Principal>
+      <Dependent Role="Member">
+        <PropertyRef Name="UnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Message_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="Message" Type="Self.Message" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="MemberID" />
+      </Principal>
+      <Dependent Role="Message">
+        <PropertyRef Name="MemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notice_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="Notice" Type="Self.Notice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="MemberID" />
+      </Principal>
+      <Dependent Role="Notice">
+        <PropertyRef Name="MemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiceBooking_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="ServiceBooking" Type="Self.ServiceBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="MemberID" />
+      </Principal>
+      <Dependent Role="ServiceBooking">
+        <PropertyRef Name="MemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiceBooking_ServiceProvider">
+    <End Role="ServiceProvider" Type="Self.ServiceProvider" Multiplicity="1" />
+    <End Role="ServiceBooking" Type="Self.ServiceBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServiceProvider">
+        <PropertyRef Name="ServiceProvideID" />
+      </Principal>
+      <Dependent Role="ServiceBooking">
+        <PropertyRef Name="ServiceProviderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiceBooking_Unit">
+    <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+    <End Role="ServiceBooking" Type="Self.ServiceBooking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="UnitID" />
+      </Principal>
+      <Dependent Role="ServiceBooking">
+        <PropertyRef Name="UnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ServiceProvider_ServiceType">
+    <End Role="ServiceType" Type="Self.ServiceType" Multiplicity="1" />
+    <End Role="ServiceProvider" Type="Self.ServiceProvider" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ServiceType">
+        <PropertyRef Name="ServiceTypeID" />
+      </Principal>
+      <Dependent Role="ServiceProvider">
+        <PropertyRef Name="ServiceTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Unit_UnitType">
+    <End Role="UnitType" Type="Self.UnitType" Multiplicity="1" />
+    <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="UnitType">
+        <PropertyRef Name="UnitTypeID" />
+      </Principal>
+      <Dependent Role="Unit">
+        <PropertyRef Name="UnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Unit_Wing">
+    <End Role="Wing" Type="Self.Wing" Multiplicity="1" />
+    <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Wing">
+        <PropertyRef Name="WingID" />
+      </Principal>
+      <Dependent Role="Unit">
+        <PropertyRef Name="WingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VisitorLog_Unit">
+    <End Role="Unit" Type="Self.Unit" Multiplicity="1" />
+    <End Role="VisitorLog" Type="Self.VisitorLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="UnitID" />
+      </Principal>
+      <Dependent Role="VisitorLog">
+        <PropertyRef Name="UnitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VisitorLog_Watchman">
+    <End Role="Watchman" Type="Self.Watchman" Multiplicity="1" />
+    <End Role="VisitorLog" Type="Self.VisitorLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Watchman">
+        <PropertyRef Name="WatchmanID" />
+      </Principal>
+      <Dependent Role="VisitorLog">
+        <PropertyRef Name="WatchmanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SmartSocietyDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Events" EntityType="Self.Event" />
+    <EntitySet Name="EventEntries" EntityType="Self.EventEntry" />
+    <EntitySet Name="Members" EntityType="Self.Member" />
+    <EntitySet Name="Messages" EntityType="Self.Message" />
+    <EntitySet Name="Notices" EntityType="Self.Notice" />
+    <EntitySet Name="ServiceBookings" EntityType="Self.ServiceBooking" />
+    <EntitySet Name="ServiceProviders" EntityType="Self.ServiceProvider" />
+    <EntitySet Name="ServiceTypes" EntityType="Self.ServiceType" />
+    <EntitySet Name="Units" EntityType="Self.Unit" />
+    <EntitySet Name="UnitTypes" EntityType="Self.UnitType" />
+    <EntitySet Name="VisitorLogs" EntityType="Self.VisitorLog" />
+    <EntitySet Name="Watchmen" EntityType="Self.Watchman" />
+    <EntitySet Name="Wings" EntityType="Self.Wing" />
+    <AssociationSet Name="FK_Event_Unit" Association="Self.FK_Event_Unit">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="Event" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventEntry_Event" Association="Self.FK_EventEntry_Event">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="EventEntry" EntitySet="EventEntries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventEntry_Member" Association="Self.FK_EventEntry_Member">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="EventEntry" EntitySet="EventEntries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventEntry_Unit" Association="Self.FK_EventEntry_Unit">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="EventEntry" EntitySet="EventEntries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Member_Unit" Association="Self.FK_Member_Unit">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="Member" EntitySet="Members" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Message_Member" Association="Self.FK_Message_Member">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="Message" EntitySet="Messages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notice_Member" Association="Self.FK_Notice_Member">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="Notice" EntitySet="Notices" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceBooking_Member" Association="Self.FK_ServiceBooking_Member">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="ServiceBooking" EntitySet="ServiceBookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceBooking_ServiceProvider" Association="Self.FK_ServiceBooking_ServiceProvider">
+      <End Role="ServiceProvider" EntitySet="ServiceProviders" />
+      <End Role="ServiceBooking" EntitySet="ServiceBookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceBooking_Unit" Association="Self.FK_ServiceBooking_Unit">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="ServiceBooking" EntitySet="ServiceBookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ServiceProvider_ServiceType" Association="Self.FK_ServiceProvider_ServiceType">
+      <End Role="ServiceType" EntitySet="ServiceTypes" />
+      <End Role="ServiceProvider" EntitySet="ServiceProviders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Unit_UnitType" Association="Self.FK_Unit_UnitType">
+      <End Role="UnitType" EntitySet="UnitTypes" />
+      <End Role="Unit" EntitySet="Units" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Unit_Wing" Association="Self.FK_Unit_Wing">
+      <End Role="Wing" EntitySet="Wings" />
+      <End Role="Unit" EntitySet="Units" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VisitorLog_Unit" Association="Self.FK_VisitorLog_Unit">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="VisitorLog" EntitySet="VisitorLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VisitorLog_Watchman" Association="Self.FK_VisitorLog_Watchman">
+      <End Role="Watchman" EntitySet="Watchmen" />
+      <End Role="VisitorLog" EntitySet="VisitorLogs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

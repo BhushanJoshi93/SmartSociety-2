@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "NoticeDetail";
+    Layout = "~/Views/AdminLayout.cshtml";
+}
+
+<div class="col-md-12  col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Notice</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <br>
+            <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="" action="/Secretary/NoticeDetail" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="UnitID" value="@Model.NoticeID" />
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Title <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Title" name="Title" value="@Model.Title" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Details <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <textarea class="form-control" rows="3" name="Details" value="@Model.Details"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="DocumentPath">
+                        Attachment
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @if (Model.NoticeID > 0)
+                        {
+                            <img src="@Model.Attachment" style="max-height:200px; max-width:200px; border: solid 3px #888888;" />
+                            <br />
+                        }
+                        <input class="input-xlarge focused" id="Attachment" type="file" name="Attachment">
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="button" onclick="location.href='/Secretary/NoticeDetail/0'" class="btn btn-primary">Cancel</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+

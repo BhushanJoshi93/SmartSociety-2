@@ -1,0 +1,144 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "";
+}
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Smart Society </title>
+
+    <!-- Bootstrap core CSS -->
+
+    <link href="~/TemplateFiles/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="~/TemplateFiles/fonts/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/TemplateFiles/css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom styling plus plugins -->
+    <link href="~/TemplateFiles/css/custom.css" rel="stylesheet">
+    <link href="~/TemplateFiles/css/icheck/flat/green.css" rel="stylesheet">
+
+
+    <script src="~/TemplateFiles/js/jquery.min.js"></script>
+
+    <!--[if lt IE 9]>
+          <script src="../assets/js/ie8-responsive-file-warning.js"></script>
+          <![endif]-->
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+          <![endif]-->
+
+</head>
+
+<body style="background:#F7F7F7;">
+
+    <div class="">
+        <a class="hiddenanchor" id="toregister"></a>
+        <a class="hiddenanchor" id="tologin"></a>
+
+        <div id="wrapper">
+            <div id="login" class="animate form">
+                <section class="login_content">
+                    <form action="/Access/Validate" method="post">
+                        <h1>Login</h1>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Username" name="Username" required="">
+                        </div>
+                        <div>
+                            <input type="password" class="form-control" placeholder="Password" name="Password" required="">
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                            <a class="reset_pass" href="#">Lost your password?</a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="separator">
+
+                            <p class="change_link">
+                                New to site?
+                                <a href="#toregister" class="to_register"> Create Account </a>
+                            </p>
+                            <div class="clearfix"></div>
+                            <br>
+                            <div>
+                                <h1><i class="fa fa-home" style="font-size: 26px;"></i> Smart Society</h1>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- form -->
+                </section>
+                <!-- content -->
+            </div>
+            <div id="register" class="animate form">
+                <section class="login_content">
+                    <form action="/Access/Register" method="post" enctype="multipart/form-data">
+                        <h1>Create Account</h1>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Name" name="Name" required="required">
+                        </div>
+                        <div>
+                            <input type="email" class="form-control" placeholder="Email" name="Email" required="required">
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Username" name="Username" required="required">
+                        </div>
+                        <div>
+                            <input type="password" class="form-control" placeholder="Password" name="Password" required="required">
+                        </div>
+                        <div>
+                            <input type="text" class="form-control" placeholder="Mobile" name="Mobile" required="required">
+                        </div>
+                        <div>
+                            <input type="file" class="form-control" placeholder="Profile Picture" name="PhotoPath" >
+                            <small>Choose Profile Picture</small>
+                        </div>
+                        <div>
+                            <div id="gender" class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-default parsley-success" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                    <input type="radio" name="Gender" value="Male" data-parsley-multiple="gender" required="required" data-parsley-id="9390"> &nbsp; Male &nbsp;
+                                </label><ul class="parsley-errors-list" id="parsley-id-multiple-gender"></ul>
+                                <label class="btn btn-primary active" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                    <input type="radio" name="Gender" value="Female" checked="" data-parsley-multiple="gender" data-parsley-id="9390"> Female
+                                </label>
+                            </div>
+                        </div>
+                        <div >
+                            <br />
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="separator">
+
+                            <p class="change_link">
+                                Already a member ?
+                                <a href="#tologin" class="to_register"> Log in </a>
+                            </p>
+                            <div class="clearfix"></div>
+                            <br>
+                            <div>
+                                <h1><i class="fa fa-home" style="font-size: 26px;"></i> Smart Society</h1>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- form -->
+                </section>
+                <!-- content -->
+            </div>
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>
+

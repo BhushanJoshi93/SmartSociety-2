@@ -1,0 +1,120 @@
+﻿@using System.Data
+@{
+    ViewBag.Title = "ServiceProviderDetail";
+    Layout = "~/Views/AdminLayout.cshtml";
+    DataTable dt = ViewBag.ServiceTypeDetail;
+}
+
+<div class="col-md-12  col-sm-12 col-xs-12">
+    <div class="x_panel">
+        <div class="x_title">
+            <h2>Service Provider Details</h2>
+            <ul class="nav navbar-right panel_toolbox">
+                <li>
+                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <br>
+            <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="" action="/Admin/ServiceProviderDetail" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="ServiceProviderID" value="@Model.ServiceProviderID" />
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        Name <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Name" name="Name" value="@Model.Name" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="PhotoPath">
+                        Choose Photo
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @if (Model.ServiceTypeID > 0)
+                        {
+                            <img src="@Model.PhotoPath" style="max-height:200px; max-width:200px; border: solid 3px #888888;" />
+                            <br />
+                        }
+                        <input class="input-xlarge focused" id="PhotoPath" type="file" name="PhotoPath">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="ServiceTypeID">
+                        ServiceTypeID <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @Html.DropDownList("ServiceTypeID", new SelectList(dt.DefaultView, "ServiceTypeID", "STName"), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                        Description
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <textarea class="form-control" id="Description" value="@Model.Description" name="Description" rows="1" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Mobile1">
+                        Mobile 1 <span class="required">*</span>
+                    </label>
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                        <input type="text" id="Mobile1" name="Mobile1" value="@Model.Mobile1" formnovalidate="mobile" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                    <label class="control-label col-md-2 col-sm-2 col-xs-12" for="Mobile2">
+                        Mobile 2
+                    </label>
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                        <input type="text" id="Mobile2" name="Mobile2" value="@Model.Mobile2" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                        Address <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <textarea class="form-control" id="Address" required="required" value="@Model.Address" name="Address" rows="1" placeholder="Address"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="MaxUnit">
+                        Catalog
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        @if (Model.ServiceTypeID > 0)
+                        {
+                            <img src="@Model.Catalog" style="max-height:200px; max-width:200px; border: solid 3px #888888;" />
+                            <br />
+                        }
+                        <input class="input-xlarge focused" id="Catalog" type="file" name="Catalog">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Price">
+                        Price <span class="required">*</span>
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <input type="text" id="Price" name="Price" value="@Model.Price" required="required" class="form-control col-md-7 col-xs-12" data-parsley-id="9549"><ul class="parsley-errors-list" id="parsley-id-9549"></ul>
+                    </div>
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="button" onclick="location.href='/Admin/ServiceProviderDetail/0'" class="btn btn-primary">Cancel</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+</div>
+
+
